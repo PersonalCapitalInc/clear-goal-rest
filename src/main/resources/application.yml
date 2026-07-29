@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: clear-goal-rest
+  datasource:
+    url: ${CLEARGOAL_DB_URL:jdbc:postgresql://localhost:5432/cleargoal}
+    username: ${CLEARGOAL_DB_USERNAME:cleargoal} 
+    password: ${CLEARGOAL_DB_PASSWORD:cleargoal}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+cleargoal:
+  bootstrap:
+    enabled: true
+  telegram:
+    enabled: false
+    token: ${CLEARGOAL_TELEGRAM_TOKEN:}
+    allowed-chat-id: ${CLEARGOAL_TELEGRAM_CHAT_ID:}
+    polling-delay: 30s
+
+
+    
+# CLEARGOAL_TELEGRAM_TOKEN='8947817780:AAEwP_zIqdOGpTBm18rtrMD-FVuS6yssukY' CLEARGOAL_TELEGRAM_CHAT_ID='8698467855' ./mvnw spring-boot:run -Dspring-boot.run.arguments="--spring.profiles.active=dev --cleargoal.telegram.enabled=true --server.port=8083"

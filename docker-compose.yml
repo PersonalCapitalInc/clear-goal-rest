@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: cleargoal-postgres
+    environment:
+      POSTGRES_DB: cleargoal
+      POSTGRES_USER: cleargoal
+      POSTGRES_PASSWORD: cleargoal
+    ports:
+      - "5432:5432"
+    volumes:
+      - cleargoal-postgres-data:/var/lib/postgresql/data
+
+volumes:
+  cleargoal-postgres-data:
